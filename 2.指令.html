@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="xApp">
+<head>
+    <meta charset="UTF-8">
+    <title>指令</title>
+    <style>
+        [ng-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body ng-cloak="">
+<div ng-controller="xCtrl">
+    <span ng-init="username='xy'">{{username}}</span>
+    <input type="text" ng-model="username">
+
+    <!--ng-repeat-->
+    <ul>
+        <li ng-repeat="(key,item) in arr track by $index">{{item}}</li>
+    </ul>
+    <select>
+        <option value="" ng-repeat="item in arr track by $index">{{item}}</option>
+    </select>
+    <!--ng-options-->
+    <select ng-model="selectedName" ng-options="item.name as item.name for item in obj">
+    </select>
+
+    <!--自定义指令-->
+    <!--属性-->
+    <div xy-dir></div>
+    <!--类名-->
+    <div class="xy-dir"></div>
+    <!--标签-->
+    <xy-dir></xy-dir>
+    <!--注释-->
+    <!-- directive: xy-dir -->
+</div>
+
+<script src="node_modules/angular/angular.js"></script>
+<script>
+    var app=angular.module("xApp",[]);
+    app.controller("xCtrl",['$scope',function ($scope) {
+        $scope.selectedName="aa";
+        $scope.arr=[1,2,2,3];
+        $scope.obj = [
+            {name:'xy',age:12},
+            {name:'aa',age:22}
+        ];
+    }]);
+
+    //自定义指令
+    app.directive("xyDir",function () {
+        return {
+            restrict:'EACM',//E==》元素 C==》类名 M==》注释  A==》属性
+            template : "<h1>自定义指令!</h1>"
+        }
+    })
+</script>
+</body>
+</html>

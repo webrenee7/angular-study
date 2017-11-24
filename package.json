@@ -1,0 +1,22 @@
+{
+  "name": "webrenee7",
+  "version": "1.0.0",
+  "description": "angular学习",
+  "main": "index.js",
+  "dependencies": {
+    "angular": "^1.6.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "webrenee7"
+  },
+  "keywords": [
+    "github_xy0827"
+  ],
+  "author": "xuya",
+  "license": "ISC"
+}
