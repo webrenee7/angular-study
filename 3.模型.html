@@ -1,14 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>模型</title>
+    <style>
+        /*css类*/
+        input.ng-valid {/*验证通过*/
+            background-color: lightblue;
+        }
+        input.ng-invalid {/*验证不通过*/
+            background-color: red;
+        }
+        input.ng-empty {/*内容为空*/
+            background-color: blue;
+        }
+        input.ng-touched {/*和控件进行过交互*/
+            background-color: darkblue;
+        }
+    </style>
 </head>
 <body>
-
+<!--双向数据绑定-->
+<div ng-init="name='xy'">{{name}}</div>
+<input type="text" ng-model="name">
+<form name="myForm" ng-init="myText = 'test@runoob.com'">
+    Email:
+    <input type="email" name="myAddress" ng-model="myText" required></p>
+    <!--验证用户书输入-->
+    <span ng-show="myForm.myAddress.$error.email">不是一个合法的邮箱地址</span>
+    <!--应用状态-->
+    <h1>状态</h1>
+    {{myForm.myAddress.$valid}}<!--表单是否通过验证-->
+    {{myForm.myAddress.$dirty}}<!--表单是否修改-->
+    {{myForm.myAddress.$touched}}<!--用户是否和控件进行过交互-->
+</form>
 <script src="node_modules/angular/angular.js"></script>
-<script>
-
-</script>
 </body>
 </html>

@@ -1,14 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="xApp">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>作用域</title>
+    <style>
+        [ng-cloak]{
+            display: none;
+        }
+    </style>
 </head>
-<body>
+<body ng-cloak="">
+<div ng-controller="pCtrl">
+    <span>{{parent}}</span><!--可输出-->
+    <span>{{child}}</span><!--不可输出-->
+    <div ng-controller="cCtrl">
+        <span>{{parent}}</span><!--可输出-->
+        <span>{{child}}</span><!--可输出-->
+    </div>
+</div>
 
 <script src="node_modules/angular/angular.js"></script>
 <script>
-
+    var app=angular.module("xApp",[]);
+    app.controller("pCtrl",['$scope',function ($scope) {
+        $scope.parent="parent";
+    }]);
+    app.controller("cCtrl",['$scope',function ($scope) {
+        $scope.child="child";
+    }]);
+    /*子能够访问父，父不能访问子*/
 </script>
 </body>
 </html>
