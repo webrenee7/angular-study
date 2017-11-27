@@ -51,8 +51,20 @@
     //自定义指令
     app.directive("xyDir",function () {
         return {
-            restrict:'EACM',//E==》元素 C==》类名 M==》注释  A==》属性
-            template : "<h1>自定义指令!</h1>"
+            require:'xxx',//要交互的指令
+            restrict:'EACM',//限制你的指令只能通过特定的方式来调用  E==》元素 C==》类名 M==》注释  A==》属性
+            //template : "<h1>我是自定义指令</h1>",
+            templateUrl:'tmpl.html',
+            replace:true,//是否替换掉所在元素指令本身，当值为true时，模板的顶级元素只能有一个
+            transclude:true,//保留指令容器里面的内容，并且通过ng-transclude显示
+            scope:true,//继承父集作用域，并创建指令自己的作用域
+            scope:{},//创建指令自己的独立作用域，与父集无关
+            link:function (scope,element,attrs,xxxCtrl) {//用来链接作用域和DOM视图
+                //scope  当前指令所在作用域
+                //element  当前指令所在元素  是个JQ对象
+                //attrs  当前指令所在元素的属性集合
+                //xxxCtrl  依赖于xxx的控制器注入进来的  当这个link执行时，会调用xxx的link函数
+            }
         }
     })
 </script>
