@@ -1,14 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="xApp">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>过滤器</title>
 </head>
 <body>
+<!--内置过滤器-->
+<div>{{'abc'|uppercase}}</div><!--将字符串格式化为大写-->
+<div>{{'abc'|lowercase}}</div><!--将字符串格式化为小写-->
+<div>{{100|currency}}</div><!--将数字格式化为货币形式-->
+<div>{{1486267313587|date:'yy年MM月dd日 hh:mm:ss'}}</div><!--将时间戳格式化为日期-->
+<div>{{123234|number:5}}</div><!--将数字格式化为千分符形式，并设置保留几位小数-->
+<div>{{'ABDSF'|limitTo:4}}</div><!--对象的截取-->
+<div>{{{name:'xy',age:123}|json}}</div><!--将json对象格式化为json字符串-->
+<div>{{[{name:'zs',age:123},{name:'xy',age:22}]|filter:{name:'zs'} }}</div><!--查询过滤器-->
+<div>{{ [{name:'zs',age:123},{name:'xy',age:22}] | orderBy:'age':false}}</div><!--排序，true降序，false升序-->
 
+<!--自定义过滤器-->
+<div>{{'abcdsfds'|reverse}}</div>
 <script src="node_modules/angular/angular.js"></script>
 <script>
-
+    var app=angular.module("xApp",[]);
+    <!--自定义过滤器-->
+    app.filter("reverse",function () {
+        return function (str) {//str是需要格式化的数据
+            return str.split("").reverse().join("");
+        }
+    });
 </script>
 </body>
 </html>

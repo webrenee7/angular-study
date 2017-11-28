@@ -10,23 +10,31 @@
     </style>
 </head>
 <body ng-cloak="">
+{{allp}}<!--可输出-->
+{{allc}}<!--可输出-->
 <div ng-controller="pCtrl">
     <span>{{parent}}</span><!--可输出-->
     <span>{{child}}</span><!--不可输出-->
+    {{allp}}<!--可输出-->
+    {{allc}}<!--可输出-->
     <div ng-controller="cCtrl">
         <span>{{parent}}</span><!--可输出-->
         <span>{{child}}</span><!--可输出-->
+        {{allp}}<!--可输出-->
+        {{allc}}<!--可输出-->
     </div>
 </div>
-
 <script src="node_modules/angular/angular.js"></script>
 <script>
+    //$scope当前作用域，$rootScope全局作用域
     var app=angular.module("xApp",[]);
-    app.controller("pCtrl",['$scope',function ($scope) {
+    app.controller("pCtrl",['$scope','$rootScope',function ($scope,$rootScope) {
         $scope.parent="parent";
+        $rootScope.allp="全局1";
     }]);
-    app.controller("cCtrl",['$scope',function ($scope) {
+    app.controller("cCtrl",['$scope','$rootScope',function ($scope,$rootScope) {
         $scope.child="child";
+        $rootScope.allc="全局2";
     }]);
     /*子能够访问父，父不能访问子*/
 </script>

@@ -57,7 +57,7 @@
             templateUrl:'tmpl.html',
             replace:true,//是否替换掉所在元素指令本身，当值为true时，模板的顶级元素只能有一个
             transclude:true,//保留指令容器里面的内容，并且通过ng-transclude显示
-            scope:true,//继承父集作用域，并创建指令自己的作用域
+            scope:true,//继承父级作用域，并创建指令自己的作用域
             scope:{},//创建指令自己的独立作用域，与父集无关
             link:function (scope,element,attrs,xxxCtrl) {//用来链接作用域和DOM视图
                 //scope  当前指令所在作用域

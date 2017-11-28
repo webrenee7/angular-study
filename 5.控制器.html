@@ -1,14 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="xApp">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>控制器</title>
 </head>
 <body>
-
+<input type="text" ng-model="username">
+<input type="text" ng-model="age">
+<div>{{username+' '+age}}</div>
 <script src="node_modules/angular/angular.js"></script>
 <script>
-
+    var app=angular.module("xApp",[]);
+    app.controller("xCtrl",["$scope",function ($scope) {
+        $scope.username="xy";
+        $scope.age=12;
+    }]);
 </script>
 </body>
 </html>
